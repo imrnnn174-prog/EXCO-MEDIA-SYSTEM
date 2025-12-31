@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Exco Media Management</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <div class="logo">📱</div>
+                <h1>Exco Media</h1>
+                <p>Team Management System</p>
+            </div>
+
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="username" placeholder="Enter your username" required autofocus>
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <div class="password-input">
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                        <button type="button" id="togglePassword" class="password-toggle">👁️</button>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+                <p id="errorMsg" class="error-msg"></p>
+            </form>
+
+            <div class="login-footer">
+                <p>Demo Accounts:</p>
+                <div class="demo-accounts">
+                    <div class="demo-account">
+                        <strong>Ketua Media</strong>
+                        <small>admin / admin123</small>
+                    </div>
+                    <div class="demo-account">
+                        <strong>Member</strong>
+                        <small>user1 / password123</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>

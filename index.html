@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Premium Team Management System - Exco Multimedia & Publisiti">
+    <meta name="theme-color" content="#FFD700">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Team Manager">
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <title>Exco Media Management - Team Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="app">
+        <nav class="navbar">
+            <div class="navbar-content">
+                <div class="navbar-title">
+                    <span class="logo-icon">📱</span>
+                    <h1>Exco Media</h1>
+                </div>
+                <div class="navbar-menu">
+                    <button class="nav-btn" id="notificationBtn">
+                        <span class="icon">🔔</span>
+                        <span class="badge" id="notificationBadge">0</span>
+                    </button>
+                    <div class="profile-dropdown">
+                        <button class="profile-btn" id="profileBtn">
+                            <img id="profilePic" src="assets/profile/default.png" alt="Profile" class="profile-pic">
+                        </button>
+                        <div class="dropdown-menu" id="dropdownMenu">
+                            <div class="dropdown-header">
+                                <img id="dropdownProfilePic" src="assets/profile/default.png" alt="Profile">
+                                <div>
+                                    <p id="dropdownFullName">User</p>
+                                    <p id="dropdownRole" class="role-badge">Member</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <a href="#" id="editProfileLink" class="dropdown-item">👤 Edit Profile</a>
+                            <a href="#" id="logoutBtn" class="dropdown-item logout">🚪 Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <aside class="sidebar">
+                <nav class="sidebar-nav">
+                    <a href="#dashboard" class="nav-link active" data-section="dashboard">
+                        <span class="icon">📊</span>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="#submissions" class="nav-link" data-section="submissions">
+                        <span class="icon">📤</span>
+                        <span>Submissions</span>
+                    </a>
+                    <a href="#approvals" class="nav-link" data-section="approvals" id="approvalsLink">
+                        <span class="icon">✅</span>
+                        <span>Approvals</span>
+                        <span class="badge" id="approvalsBadge">0</span>
+                    </a>
+                    <a href="#calendar" class="nav-link" data-section="calendar">
+                        <span class="icon">📅</span>
+                        <span>Calendar</span>
+                    </a>
+                    <a href="#leave" class="nav-link" data-section="leave">
+                        <span class="icon">🏖️</span>
+                        <span>E-Leave</span>
+                    </a>
+                </nav>
+            </aside>
+
+            <main class="main-content">
+                <!-- Dashboard Section -->
+                <section id="dashboard" class="section active">
+                    <div class="section-header">
+                        <h2>Dashboard</h2>
+                        <p id="welcomeMsg">Welcome back!</p>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">📤</div>
+                            <div class="stat-info">
+                                <p class="stat-label">Total Submissions</p>
+                                <p class="stat-number" id="totalSubmissions">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">⏳</div>
+                            <div class="stat-info">
+                                <p class="stat-label">Pending Approvals</p>
+                                <p class="stat-number" id="pendingApprovals">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">✅</div>
+                            <div class="stat-info">
+                                <p class="stat-label">Approved</p>
+                                <p class="stat-number" id="approvedCount">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">❌</div>
+                            <div class="stat-info">
+                                <p class="stat-label">Rejected</p>
+                                <p class="stat-number" id="rejectedCount">0</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-section">
+                        <h3>Recent Activity</h3>
+                        <div class="activity-list" id="activityList">
+                            <p class="empty-state">No recent activity</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Submissions Section -->
+                <section id="submissions" class="section">
+                    <div class="section-header">
+                        <h2>Submissions</h2>
+                        <button class="btn btn-primary" id="newSubmissionBtn">+ New Submission</button>
+                    </div>
+
+                    <div class="filters">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="poster">Poster</button>
+                        <button class="filter-btn" data-filter="video">Video</button>
+                        <button class="filter-btn" data-filter="pending">Pending</button>
+                        <button class="filter-btn" data-filter="approved">Approved</button>
+                        <button class="filter-btn" data-filter="rejected">Rejected</button>
+                    </div>
+
+                    <div class="submissions-list" id="submissionsList">
+                        <p class="empty-state">No submissions yet</p>
+                    </div>
+                </section>
+
+                <!-- Approvals Section -->
+                <section id="approvals" class="section">
+                    <div class="section-header">
+                        <h2>Approvals Pending</h2>
+                    </div>
+
+                    <div class="approvals-list" id="approvalsList">
+                        <p class="empty-state">No pending approvals</p>
+                    </div>
+                </section>
+
+                <!-- Calendar Section -->
+                <section id="calendar" class="section">
+                    <div class="section-header">
+                        <h2>Shared Calendar</h2>
+                    </div>
+
+                    <div class="calendar-container">
+                        <div class="calendar-header">
+                            <button id="prevMonth">&larr;</button>
+                            <h3 id="currentMonth"></h3>
+                            <button id="nextMonth">&rarr;</button>
+                        </div>
+                        <div class="calendar-grid" id="calendarGrid"></div>
+                        <div class="calendar-events" id="calendarEvents">
+                            <p class="empty-state">No events for this day</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- E-Leave Section -->
+                <section id="leave" class="section">
+                    <div class="section-header">
+                        <h2>E-Leave Management</h2>
+                        <button class="btn btn-primary" id="applyLeaveBtn">+ Apply for Leave</button>
+                    </div>
+
+                    <div class="leave-tabs">
+                        <button class="tab-btn active" data-tab="my-leaves">My Leaves</button>
+                        <button class="tab-btn" data-tab="pending-leaves" id="pendingLeavesTab">Pending Approvals</button>
+                    </div>
+
+                    <div id="my-leaves" class="tab-content active">
+                        <div class="leave-list" id="myLeavesList">
+                            <p class="empty-state">No leave records</p>
+                        </div>
+                    </div>
+
+                    <div id="pending-leaves" class="tab-content">
+                        <div class="leave-list" id="pendingLeavesList">
+                            <p class="empty-state">No pending approvals</p>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal: New Submission -->
+    <div id="submissionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>New Submission</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <form id="submissionForm">
+                <div class="form-group">
+                    <label>Submission Type</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="type" value="poster" required>
+                            <span>📰 Poster</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="type" value="video" required>
+                            <span>🎬 Video</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" name="title" placeholder="Enter submission title" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="description" placeholder="Describe your submission" rows="4"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Upload Method</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="uploadMethod" value="file" checked required>
+                            <span>📁 File Upload</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="uploadMethod" value="link" required>
+                            <span>🔗 External Link</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label id="uploadLabel">Upload File</label>
+                    <input type="file" id="fileInput" name="file" accept="image/*,video/*">
+                </div>
+
+                <div class="form-group" id="linkGroup" style="display:none;">
+                    <label>External Link</label>
+                    <input type="url" name="link" placeholder="https://example.com">
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary close-modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Apply Leave -->
+    <div id="leaveModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Apply for Leave</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <form id="leaveForm">
+                <div class="form-group">
+                    <label>Leave Type</label>
+                    <select name="leaveType" required>
+                        <option value="">Select leave type</option>
+                        <option value="sick">🏥 Sick Leave</option>
+                        <option value="annual">📅 Annual Leave</option>
+                        <option value="emergency">🚨 Emergency Leave</option>
+                        <option value="personal">👤 Personal Leave</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Start Date</label>
+                        <input type="date" name="startDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label>End Date</label>
+                        <input type="date" name="endDate" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Reason</label>
+                    <textarea name="reason" placeholder="Provide reason for leave" rows="4" required></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary close-modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Apply</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Approval Actions -->
+    <div id="approvalModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Review Submission</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div id="approvalContent"></div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/submission.js"></script>
+    <script src="js/leave.js"></script>
+    <script src="js/calendar.js"></script>
+</body>
+</html>
